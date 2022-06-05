@@ -1,0 +1,37 @@
+{
+  "name": "apollo-boost-in-node",
+  "version": "1.0.0",
+  "description": "apollo client without a view-layer",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miladxsar23/apollo-boost-in-node-js.git"
+  },
+  "keywords": [
+    "apollo",
+    "apollo-boost",
+    "apollo-client",
+    "graphql"
+  ],
+  "author": "Milad shiriyan dehkordi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Miladxsar23/apollo-boost-in-node-js/issues"
+  },
+  "homepage": "https://github.com/Miladxsar23/apollo-boost-in-node-js#readme",
+  "dependencies": {
+    "apollo-boost": "^0.4.9",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1",
+    "graphql": "^15.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "nodemon": "^2.0.16"
+  }
+}
