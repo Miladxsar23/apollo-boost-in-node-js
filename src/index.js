@@ -68,7 +68,7 @@ const GET_REPOSITORY_ORDERED = gql`
   query (
     $organization: String!
     $first: Int!
-    $cursor : String
+    $cursor: String
     $field: RepositoryOrderField!
     $direction: OrderDirection!
   ) {
@@ -76,16 +76,16 @@ const GET_REPOSITORY_ORDERED = gql`
       name
       url
       repositories(
-        first: $first,
-        after : $cursor,
+        first: $first
+        after: $cursor
         orderBy: { field: $field, direction: $direction }
       ) {
         edges {
           ...repositoryNode
         }
         pageInfo {
-            endCursor
-            hasNextPage
+          endCursor
+          hasNextPage
         }
       }
     }
@@ -107,7 +107,43 @@ client
       first: 5,
       field: "STARGAZERS",
       direction: "DESC",
-      cursor : "Y3Vyc29yOnYyOpLNg-vOBag6qQ=="
+      cursor: "Y3Vyc29yOnYyOpLNg-vOBag6qQ==",
     },
   })
   .then(console.log);
+///////////////////////////////////////Mutation////////////////////////////////////////////
+/* addStart */
+const ADD_STAR_TO_REPOSITORY = gql`
+  mutation ($starrableId: ID!) {
+    addStar(input: { starrableId: $starrableId }) {
+      starrable {
+        id
+        viewerHasStarred
+      }
+    }
+  }
+`;
+client
+  .mutate({
+    mutation: ADD_STAR_TO_REPOSITORY,
+    variables: { starrableId: "MDEwOlJlcG9zaXRvcnk2OTM0Mzk1" },
+  })
+  .then(console.log);
+
+/* removeStar */
+const REMOVE_START_OF_REPOSITORY = gql`
+  mutation ($repositoryId: ID!) {
+    removeStar(input: { starrableId: $repositoryId }) {
+      starrable {
+        id
+        viewerHasStarred
+      }
+    }
+  }
+`;
+client.mutate({
+  mutation: REMOVE_START_OF_REPOSITORY,
+  variables: {
+    repositoryId: "MDEwOlJlcG9zaXRvcnk2OTM0Mzk1",
+  },
+}).then(console.log)
